@@ -1,1 +1,1 @@
-config_file_path = '~/.depman'
+depman_home = '~/.depman/'
