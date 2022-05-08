@@ -30,7 +30,9 @@ def test():
 
 def package():
     makedirs('package/lib', exist_ok=True)
+    makedirs('package/include', exist_ok=True)
     copy('log4cpp.o', 'package/lib/')
+    copy('log4cpp.h', 'package/include/')
 
 def generate_package_info():
     config = ConfigParser(allow_no_value=True)
@@ -51,7 +53,7 @@ def install():
     copytree('package/', f'{install_path}/package', dirs_exist_ok=True)
     copy('package_info.txt', install_path)
     copy(__file__, install_path)
-    
+
 phases = {
     'clean': clean,
     'build': build,
