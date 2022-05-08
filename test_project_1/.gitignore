@@ -1,3 +1,4 @@
 *.o
 a.out
 package/
+package_info.txt
