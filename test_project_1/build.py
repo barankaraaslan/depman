@@ -5,6 +5,9 @@ from os import makedirs, remove
 from configparser import ConfigParser
 from glob import glob
 
+name = 'log4cpp'
+version = '1.0.0'
+
 def clean():
     try:
         rmtree('package')
@@ -30,8 +33,8 @@ def package():
 def generate_package_info():
     config = ConfigParser(allow_no_value=True)
     config['info'] = {
-        'name': 'log4cpp',
-        'version': '1.0.0',
+        'name': name,
+        'version': version,
     }
     config['files'] = {}
     for path in glob('package/**/*'):
