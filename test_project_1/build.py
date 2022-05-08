@@ -3,6 +3,7 @@ from subprocess import run, check_output
 from shutil import copy, copytree, rmtree
 from os import makedirs, remove
 from configparser import ConfigParser
+from glob import glob
 
 def clean():
     try:
@@ -27,11 +28,15 @@ def package():
     copy('log4cpp.o', 'package/lib/')
 
 def generate_package_info():
-    config = ConfigParser()
+    config = ConfigParser(allow_no_value=True)
     config['info'] = {
         'name': 'log4cpp',
         'version': '1.0.0',
     }
+    config['files'] = {}
+    for path in glob('package/**/*'):
+        config['files'][path] = None
+        
     with open('package_info.txt', 'w') as _file:
         config.write(_file)
 
