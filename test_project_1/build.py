@@ -1,7 +1,9 @@
 from depman.main import run_depman
+from depman.config import depman_home
 from subprocess import run, check_output
 from shutil import copy, copytree, rmtree
 from os import makedirs, remove
+from os.path import expanduser
 from configparser import ConfigParser
 from glob import glob
 
@@ -43,6 +45,13 @@ def generate_package_info():
     with open('package_info.txt', 'w') as _file:
         config.write(_file)
 
+def install():
+    install_path = expanduser(f'{depman_home}/{name}/{version}')
+    makedirs(install_path, exist_ok=True)
+    copytree('package/', f'{install_path}/package', dirs_exist_ok=True)
+    copy('package_info.txt', install_path)
+    copy(__file__, install_path)
+    
 phases = {
     'clean': clean,
     'build': build,
@@ -50,6 +59,7 @@ phases = {
     'test': test,
     'package': package,
     'generate_package_info': generate_package_info,
+    'install': install,
 }
 
 run_depman(phases)
