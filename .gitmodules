@@ -1,0 +1,8 @@
+[submodule "liblog4cpp"]
+	path = liblog4cpp
+	url = git@github.com:barankaraaslan/liblog4cpp.git
+	branch = main
+[submodule "alien"]
+	path = alien
+	url = git@github.com:barankaraaslan/alien.git
+	branch = main
